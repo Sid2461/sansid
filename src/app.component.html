@@ -1,0 +1,76 @@
+<div class="relative w-full max-w-lg p-4 mx-auto">
+  
+  @if (accepted()) {
+    <div class="fade-in bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl text-center border-4 border-pink-300">
+      <div class="mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto text-red-500 heart-beat fill-current" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      
+      <h1 class="font-pacifico text-4xl md:text-5xl text-pink-600 mb-6">Yay! I knew it!</h1>
+      
+      <p class="text-xl text-gray-700 mb-6 font-semibold">
+        Best. Valentine. Ever. ❤️
+      </p>
+      
+      <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4 shadow-inner">
+        <img src="https://media.tenor.com/gUiu1zyxfzYAAAAC/bear-kiss-bear-kisses.gif" alt="Cute Bears Kissing" class="object-cover w-full h-full" />
+      </div>
+      
+      <p class="text-sm text-pink-400 mt-4">
+        Can't wait to celebrate with you!
+      </p>
+    </div>
+  } @else {
+    <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-2xl text-center border-2 border-white/50">
+      <div class="mb-8 relative flex justify-center items-center">
+         <!-- Replaced Image with Animated Heart -->
+         <div class="relative w-32 h-32 flex items-center justify-center">
+           <svg class="w-full h-full text-red-500 heart-pulse fill-current drop-shadow-xl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+           </svg>
+           <!-- Inner shine/highlight for 3D effect -->
+           <div class="absolute top-4 left-6 w-6 h-6 bg-white/30 rounded-full blur-sm"></div>
+         </div>
+      </div>
+      
+      <h1 class="font-pacifico text-4xl md:text-5xl text-pink-600 drop-shadow-sm leading-tight mb-4">
+         Will you be my Valentine?
+       </h1>
+
+      <p class="text-gray-600 mb-8 text-lg">
+        It would mean the world to me! 🌹
+      </p>
+
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4 min-h-[60px]">
+        <!-- Yes Button -->
+        <button 
+          (click)="accept()"
+          class="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full text-xl shadow-lg transform hover:scale-110 transition-all duration-200 focus:outline-none ring-4 ring-green-500/30 w-full md:w-auto">
+          Yes! 😍
+        </button>
+
+        <!-- No Button (The tricky one) -->
+        <button 
+          #noBtn
+          (mouseenter)="onNoHover()"
+          (click)="onNoClick($event)"
+          [style.position]="noBtnStyle().position"
+          [style.left]="noBtnStyle().left"
+          [style.top]="noBtnStyle().top"
+          [style.transition]="noBtnStyle().transition"
+          [style.z-index]="noBtnStyle().zIndex"
+          [class.jelly-effect]="isJelly()"
+          class="px-8 py-3 bg-red-500 text-white font-bold rounded-full text-xl shadow-lg focus:outline-none w-full md:w-auto whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]"
+          type="button">
+          {{ noBtnText() }} 😢
+        </button>
+      </div>
+      
+      <div class="mt-8 text-xs text-gray-400">
+        (Hint: There is only one right answer)
+      </div>
+    </div>
+  }
+</div>
